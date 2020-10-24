@@ -11,6 +11,8 @@ sentences = constituency_parser.raw_parse_sents(("Hello, My name is Melroy.", "W
 #         sentence.draw()
 
 sent1 = "The quick brown fox jumped over the lazy dog"
+sent1 = "The boy who jumped into the river saved another boy"
+#sent1 = "Senior boys who had exams played football on the ground"
 print(sent1)
 print("Constituency parsing")
 for t in constituency_parser.raw_parse(sent1):
@@ -20,4 +22,8 @@ print("Dependency parsing")
 result = dependency_parser.raw_parse(sent1)
 dep = result.__next__()
 
-print(list(dep.triples()))
+l = list(dep.triples())
+dep_parse = []
+for el in l:
+	dep_parse.append((el[0][0],el[2][0]))
+print(dep_parse)
