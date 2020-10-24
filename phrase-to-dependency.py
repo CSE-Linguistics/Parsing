@@ -37,7 +37,7 @@ def convert_to_dependency_without_root(tree):
 			h = [str(subtree.label()), subtree.leaves()[0]]
 			children_heads.append(h)
 	#print(children_heads)
-	h = findHead(children_heads)
+	h = find_head(children_heads)
 	#print(h)
 	for m in children_heads:
 		if m != h:
@@ -49,7 +49,7 @@ def add_root_node(dep_tree, h):
 	dep_tree.append(("Root", h[1]))
 	return dep_tree
 
-def findHead(possible_heads):
+def find_head(possible_heads):
 	h = possible_heads[0]
 	for p in possible_heads:
 		if more_imp(p[0],h[0]):
