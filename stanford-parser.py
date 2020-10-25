@@ -12,7 +12,7 @@ sentences = constituency_parser.raw_parse_sents(("Hello, My name is Melroy.", "W
 
 sent1 = "The quick brown fox jumped over the lazy dog"
 sent1 = "The boy who jumped into the river saved another boy"
-#sent1 = "Senior boys who had exams played football on the ground"
+sent1 = "Senior boys who had exams played football on the ground"
 print(sent1)
 print("Constituency parsing")
 for t in constituency_parser.raw_parse(sent1):
