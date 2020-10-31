@@ -23,6 +23,7 @@ def dependency_to_phrase(tree):
 	for c in children:
 		for idx in c:
 			phrase_tree.append(convert_to_phrase_without_root(tree, idx))
+	phrase_tree = ['ROOT'] + phrase_tree
 	return phrase_tree
 
 
@@ -62,8 +63,18 @@ def convert_to_phrase_without_root(tree, index):
 			right_ext_projections.append(phrase_subtree)
 		else:
 			phrase_tree.append(phrase_subtree)
+	if tree.nodes[index]["tag"] in noun_tags:
+		phrase_tree = ['NP'] + phrase_tree
+	elif tree.nodes[index]["tag"] in verb_tags:
+		phrase_tree = ['VP'] + phrase_tree
+	else:
+		phrase_tree = ['X'] + phrase_tree
 	if len(left_ext_projections) + len(right_ext_projections) > 0:
 		phrase_tree = left_ext_projections + [phrase_tree] + right_ext_projections
+		if len(left_ext_projections) > 0:
+			phrase_tree = ['S'] + phrase_tree
+		else:
+			phrase_tree = ['NP'] + phrase_tree
 	return phrase_tree
 
 
